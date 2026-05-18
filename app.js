@@ -407,7 +407,7 @@ function orderViaWhatsApp() {
     showToast('Your cart is empty!', 'error');
     return;
   }
-  const phone   = '201000000000';
+  const phone   = '2001050965413';
   const message = buildWhatsAppMessage();
   window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
 }
