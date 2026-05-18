@@ -684,12 +684,6 @@ ul {
   border: 1px solid rgba(255,255,255,0.08);
 }
 
-.product-card__code {
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  font-family: 'Courier New', monospace;
-}
-
 .product-card__pricing {
   margin-top: auto;
   display: flex;
@@ -821,6 +815,101 @@ ul {
 
 .no-results p {
   font-size: 0.95rem;
+}
+
+/* ── Dose Wheel ───────────────────────────────────────────── */
+.dose-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.dose-wheel-wrapper {
+  position: relative;
+  height: 132px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--navy);
+  border: 1px solid var(--border);
+}
+
+/* gold selection bar in the center */
+.dose-wheel-selector {
+  position: absolute;
+  top: 44px;
+  left: 0;
+  right: 0;
+  height: 44px;
+  border-top: 1.5px solid rgba(212,175,55,0.5);
+  border-bottom: 1.5px solid rgba(212,175,55,0.5);
+  background: rgba(212,175,55,0.07);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* fade masks top and bottom */
+.dose-wheel-wrapper::before,
+.dose-wheel-wrapper::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50px;
+  z-index: 3;
+  pointer-events: none;
+}
+.dose-wheel-wrapper::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--navy) 10%, transparent);
+}
+.dose-wheel-wrapper::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--navy) 10%, transparent);
+}
+
+.dose-wheel {
+  height: 132px;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.dose-wheel::-webkit-scrollbar { display: none; }
+
+.dose-wheel__pad {
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.dose-wheel__item {
+  height: 44px;
+  scroll-snap-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.15s, font-weight 0.15s;
+  user-select: none;
+}
+
+.dose-wheel__item.selected {
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.product-card__code {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-family: 'Courier New', monospace;
 }
 
 /* ── About Section ────────────────────────────────────────── */

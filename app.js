@@ -43,8 +43,8 @@ const products = [
   { id: 32,  name: 'AOD9604',                  code: '10ad',      spec: '10mg',      usd10: 157.60, category: 'glp1' },
   { id: 33,  name: 'Cagrilintide',             code: 'CG05',      spec: '5mg',       usd10: 131.77, category: 'glp1' },
   { id: 34,  name: 'Cagrilintide',             code: 'CG10',      spec: '10mg',      usd10: 221.38, category: 'glp1' },
-  { id: 35,  name: 'Cagrisema (Cagrilintide + Sema 2.5+2.5mg)', code: 'CS5',  spec: '5mg',  usd10: 84.33,  category: 'glp1' },
-  { id: 36,  name: 'Cagrisema (Cagrilintide + Sema 5+5mg)',     code: 'CS10', spec: '10mg', usd10: 147.58, category: 'glp1' },
+  { id: 35,  name: 'Cagrisema (2.5mg + 2.5mg)',code: 'CS5',       spec: '5mg',       usd10: 84.33,  category: 'glp1' },
+  { id: 36,  name: 'Cagrisema (5mg + 5mg)',    code: 'CS10',      spec: '10mg',      usd10: 147.58, category: 'glp1' },
 
   // Growth Hormone & GHRP
   { id: 37,  name: 'HGH',                      code: 'H10',       spec: '10iu',      usd10: 60.61,  category: 'gh' },
@@ -69,7 +69,7 @@ const products = [
   { id: 56,  name: 'CJC-1295 with DAC',        code: 'CD05',      spec: '5mg',       usd10: 168.14, category: 'gh' },
   { id: 57,  name: 'CJC-1295 without DAC',     code: 'CND05',     spec: '5mg',       usd10: 72.47,  category: 'gh' },
   { id: 58,  name: 'CJC-1295 without DAC',     code: 'CND10',     spec: '10mg',      usd10: 122.55, category: 'gh' },
-  { id: 59,  name: 'CJC-1295 w/o DAC + Ipamorelin', code: 'CP10', spec: '10mg',     usd10: 83.81,  category: 'gh' },
+  { id: 59,  name: 'CJC-1295 + Ipamorelin',    code: 'CP10',      spec: '10mg',      usd10: 83.81,  category: 'gh' },
   { id: 60,  name: 'Sermorelin',               code: 'SMO5',      spec: '5mg',       usd10: 79.06,  category: 'gh' },
   { id: 61,  name: 'Sermorelin',               code: 'SMO10',     spec: '10mg',      usd10: 134.41, category: 'gh' },
   { id: 62,  name: 'Hexarelin',                code: 'HX2',       spec: '2mg',       usd10: 55.34,  category: 'gh' },
@@ -82,12 +82,12 @@ const products = [
   { id: 67,  name: 'BPC-157',                  code: 'BC02',      spec: '2mg',       usd10: 22.40,  category: 'recovery' },
   { id: 68,  name: 'BPC-157',                  code: 'BC05',      spec: '5mg',       usd10: 38.21,  category: 'recovery' },
   { id: 69,  name: 'BPC-157',                  code: 'BC10',      spec: '10mg',      usd10: 57.98,  category: 'recovery' },
-  { id: 70,  name: 'TB-500 (Thymosin Beta 4)', code: 'bt05',      spec: '5mg',       usd10: 86.44,  category: 'recovery' },
+  { id: 70,  name: 'TB-500',                   code: 'bt05',      spec: '5mg',       usd10: 86.44,  category: 'recovery' },
   { id: 71,  name: 'TB-500',                   code: 'bt10',      spec: '10mg',      usd10: 154.96, category: 'recovery' },
-  { id: 72,  name: 'BPC-157 5mg + TB-500 5mg', code: 'BB10',      spec: '10mg',      usd10: 94.35,  category: 'recovery' },
-  { id: 73,  name: 'BPC-157 10mg + TB-500 10mg', code: 'BB20',    spec: '20mg',      usd10: 157.60, category: 'recovery' },
-  { id: 74,  name: 'BPC-157 10mg + GHK-Cu 50mg + TB-500 10mg', code: 'BBG70', spec: '70mg', usd10: 181.32, category: 'recovery' },
-  { id: 75,  name: 'BPC-157 10mg + TB-500 10mg + GHK-Cu 50mg + KPV 10mg', code: 'KLOW80', spec: '80mg', usd10: 207.67, category: 'recovery' },
+  { id: 72,  name: 'BPC-157 + TB-500',         code: 'BB10',      spec: '5+5mg',     usd10: 94.35,  category: 'recovery' },
+  { id: 73,  name: 'BPC-157 + TB-500',         code: 'BB20',      spec: '10+10mg',   usd10: 157.60, category: 'recovery' },
+  { id: 74,  name: 'BPC-157 + GHK-Cu + TB-500',code: 'BBG70',    spec: '10+50+10mg',usd10: 181.32, category: 'recovery' },
+  { id: 75,  name: 'BPC-157 + TB-500 + GHK-Cu + KPV', code: 'KLOW80', spec: '10+10+50+10mg', usd10: 207.67, category: 'recovery' },
   { id: 76,  name: 'GHK-Cu',                   code: 'CU50',      spec: '50mg',      usd10: 26.00,  category: 'recovery' },
   { id: 77,  name: 'GHK-Cu',                   code: 'CU100',     spec: '100mg',     usd10: 29.00,  category: 'recovery' },
   { id: 78,  name: 'Epithalon',                code: 'ET10',      spec: '10mg',      usd10: 49.55,  category: 'recovery' },
@@ -174,6 +174,17 @@ const products = [
   { id: 148, name: 'Acetic Acid Water 0.6%',    code: 'AA10',      spec: '10ml',      usd10: 10.25,  category: 'iv' },
 ];
 
+// ─── Group products by name + category (one card per peptide) ────────────────
+const groupedProducts = (() => {
+  const map = new Map();
+  products.forEach(p => {
+    const key = p.name + '||' + p.category;
+    if (!map.has(key)) map.set(key, { name: p.name, category: p.category, variants: [] });
+    map.get(key).variants.push(p);
+  });
+  return Array.from(map.values());
+})();
+
 // ─── Category Labels ──────────────────────────────────────────────────────────
 const categories = [
   { key: 'all',       label: 'All Products' },
@@ -189,9 +200,12 @@ const categories = [
 ];
 
 // ─── State ────────────────────────────────────────────────────────────────────
-let cart = [];
+let cart          = [];
 let activeCategory = 'all';
-let searchQuery = '';
+let searchQuery   = '';
+const selectedVariantIdx = {}; // gidx -> variantIndex
+
+const ITEM_H = 44; // wheel item height in px
 
 // ─── DOM References ───────────────────────────────────────────────────────────
 const productGrid      = document.getElementById('product-grid');
@@ -205,32 +219,30 @@ const searchInput      = document.getElementById('search-input');
 const categoryTabsEl   = document.getElementById('category-tabs');
 const productCountEl   = document.getElementById('product-count');
 
-// ─── Render Category Tabs ─────────────────────────────────────────────────────
+// ─── Category Tabs ────────────────────────────────────────────────────────────
 function renderCategoryTabs() {
   categoryTabsEl.innerHTML = categories.map(cat => `
-    <button
-      class="cat-tab ${cat.key === activeCategory ? 'active' : ''}"
-      data-cat="${cat.key}"
-    >${cat.label}</button>
+    <button class="cat-tab ${cat.key === activeCategory ? 'active' : ''}" data-cat="${cat.key}">
+      ${cat.label}
+    </button>
   `).join('');
 }
 
-// ─── Filter Products ──────────────────────────────────────────────────────────
-function getFilteredProducts() {
-  return products.filter(p => {
-    const matchesCat    = activeCategory === 'all' || p.category === activeCategory;
-    const q             = searchQuery.toLowerCase();
+// ─── Filter Groups ────────────────────────────────────────────────────────────
+function getFilteredGroups() {
+  const q = searchQuery.toLowerCase();
+  return groupedProducts.filter((g, i) => {
+    const matchesCat    = activeCategory === 'all' || g.category === activeCategory;
     const matchesSearch = !q ||
-      p.name.toLowerCase().includes(q) ||
-      p.code.toLowerCase().includes(q) ||
-      p.spec.toLowerCase().includes(q);
+      g.name.toLowerCase().includes(q) ||
+      g.variants.some(v => v.spec.toLowerCase().includes(q) || v.code.toLowerCase().includes(q));
     return matchesCat && matchesSearch;
   });
 }
 
-// ─── Render Product Grid ──────────────────────────────────────────────────────
+// ─── Render Products ──────────────────────────────────────────────────────────
 function renderProducts() {
-  const filtered = getFilteredProducts();
+  const filtered = getFilteredGroups();
   productCountEl.textContent = `${filtered.length} product${filtered.length !== 1 ? 's' : ''}`;
 
   if (filtered.length === 0) {
@@ -244,43 +256,64 @@ function renderProducts() {
     return;
   }
 
-  productGrid.innerHTML = filtered.map(p => {
-    const price     = calcVialPrice(p.usd10);
-    const inCart    = cart.find(c => c.id === p.id);
-    const cartQty   = inCart ? inCart.qty : 0;
+  productGrid.innerHTML = filtered.map(g => {
+    const gidx      = groupedProducts.indexOf(g);
+    const varIdx    = selectedVariantIdx[gidx] || 0;
+    const variant   = g.variants[varIdx];
+    const price     = calcVialPrice(variant.usd10);
+    const multiDose = g.variants.length > 1;
+
     return `
-      <div class="product-card" data-id="${p.id}">
-        <div class="product-card__badge">${getCategoryLabel(p.category)}</div>
+      <div class="product-card" data-gidx="${gidx}">
+        <div class="product-card__badge">${getCategoryLabel(g.category)}</div>
         <div class="product-card__body">
-          <h3 class="product-card__name">${p.name}</h3>
-          <div class="product-card__meta">
-            <span class="product-card__spec">${p.spec}</span>
-            <span class="product-card__code">Code: ${p.code}</span>
-          </div>
+          <h3 class="product-card__name">${g.name}</h3>
+
+          ${multiDose ? `
+            <div class="dose-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
+                <path d="M12 5v14M5 12l7-7 7 7"/>
+              </svg>
+              Scroll to select dosage
+            </div>
+            <div class="dose-wheel-wrapper">
+              <div class="dose-wheel-selector"></div>
+              <div class="dose-wheel" data-gidx="${gidx}">
+                <div class="dose-wheel__pad"></div>
+                ${g.variants.map((v, i) => `
+                  <div class="dose-wheel__item${i === varIdx ? ' selected' : ''}" data-idx="${i}">
+                    ${v.spec}
+                  </div>
+                `).join('')}
+                <div class="dose-wheel__pad"></div>
+              </div>
+            </div>
+          ` : `
+            <div class="product-card__meta">
+              <span class="product-card__spec">${variant.spec}</span>
+            </div>
+          `}
+
           <div class="product-card__pricing">
-            <span class="product-card__price">${price.toLocaleString('en-EG')} EGP</span>
+            <span class="product-card__price" data-price="${gidx}">${price.toLocaleString('en-EG')} EGP</span>
             <span class="product-card__per">per vial</span>
           </div>
+          <div class="product-card__code" data-code="${gidx}">Code: ${variant.code}</div>
         </div>
         <div class="product-card__actions">
-          ${cartQty === 0
-            ? `<button class="btn-add" data-id="${p.id}">
-                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                   <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-                   <line x1="3" y1="6" x2="21" y2="6"/>
-                   <path d="M16 10a4 4 0 0 1-8 0"/>
-                 </svg>
-                 Add to Cart
-               </button>`
-            : `<div class="qty-control">
-                 <button class="qty-btn qty-dec" data-id="${p.id}">−</button>
-                 <span class="qty-value">${cartQty}</span>
-                 <button class="qty-btn qty-inc" data-id="${p.id}">+</button>
-               </div>`
-          }
+          <button class="btn-add" data-gidx="${gidx}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+            Add to Cart
+          </button>
         </div>
       </div>`;
   }).join('');
+
+  initWheels();
 }
 
 function getCategoryLabel(key) {
@@ -288,18 +321,59 @@ function getCategoryLabel(key) {
   return cat ? cat.label : key;
 }
 
+// ─── Dosage Wheel ─────────────────────────────────────────────────────────────
+function initWheels() {
+  document.querySelectorAll('.dose-wheel').forEach(wheel => {
+    const gidx  = parseInt(wheel.dataset.gidx, 10);
+    const group = groupedProducts[gidx];
+    if (!group) return;
+
+    const idx = selectedVariantIdx[gidx] || 0;
+    wheel.scrollTop = idx * ITEM_H;
+
+    let rafId;
+    wheel.addEventListener('scroll', () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const raw     = Math.round(wheel.scrollTop / ITEM_H);
+        const clamped = Math.max(0, Math.min(raw, group.variants.length - 1));
+        if (selectedVariantIdx[gidx] === clamped) return;
+
+        selectedVariantIdx[gidx] = clamped;
+        const v     = group.variants[clamped];
+        const price = calcVialPrice(v.usd10);
+
+        const priceEl = document.querySelector(`[data-price="${gidx}"]`);
+        const codeEl  = document.querySelector(`[data-code="${gidx}"]`);
+        if (priceEl) priceEl.textContent = price.toLocaleString('en-EG') + ' EGP';
+        if (codeEl)  codeEl.textContent  = 'Code: ' + v.code;
+
+        wheel.querySelectorAll('.dose-wheel__item').forEach((item, i) => {
+          item.classList.toggle('selected', i === clamped);
+        });
+      });
+    }, { passive: true });
+  });
+}
+
 // ─── Cart Logic ───────────────────────────────────────────────────────────────
-function addToCart(id) {
-  const product = products.find(p => p.id === id);
+function addToCart(productId) {
+  const product  = products.find(p => p.id === productId);
   if (!product) return;
-  const existing = cart.find(c => c.id === id);
+  const existing = cart.find(c => c.id === productId);
   if (existing) {
     existing.qty += 1;
   } else {
-    cart.push({ id, qty: 1, name: product.name, spec: product.spec, code: product.code, price: calcVialPrice(product.usd10) });
+    cart.push({
+      id:    productId,
+      qty:   1,
+      name:  product.name,
+      spec:  product.spec,
+      code:  product.code,
+      price: calcVialPrice(product.usd10),
+    });
   }
   updateCartUI();
-  renderProducts();
   animateCartBadge();
 }
 
@@ -309,22 +383,16 @@ function decrementCart(id) {
   cart[idx].qty -= 1;
   if (cart[idx].qty <= 0) cart.splice(idx, 1);
   updateCartUI();
-  renderProducts();
 }
 
 function incrementCart(id) {
   const item = cart.find(c => c.id === id);
-  if (item) {
-    item.qty += 1;
-    updateCartUI();
-    renderProducts();
-  }
+  if (item) { item.qty += 1; updateCartUI(); }
 }
 
 function removeFromCart(id) {
   cart = cart.filter(c => c.id !== id);
   updateCartUI();
-  renderProducts();
 }
 
 function getCartTotal() {
@@ -339,15 +407,11 @@ function updateCartUI() {
   const total = getCartTotal();
   const count = getCartItemCount();
 
-  // Badge
   cartBadge.style.display = count > 0 ? 'flex' : 'none';
   cartBadge.textContent   = count > 99 ? '99+' : count;
   cartCount.textContent   = count;
+  cartTotal.textContent   = total.toLocaleString('en-EG') + ' EGP';
 
-  // Cart total
-  cartTotal.textContent = total.toLocaleString('en-EG') + ' EGP';
-
-  // Cart items list
   if (cart.length === 0) {
     cartItemsList.innerHTML = `
       <div class="cart-empty">
@@ -393,7 +457,7 @@ function buildWhatsAppMessage() {
   const lines = ['*PeptideEgypt Order*', ''];
   cart.forEach((item, i) => {
     lines.push(`${i + 1}. ${item.name} ${item.spec} (${item.code})`);
-    lines.push(`   Qty: ${item.qty} vial${item.qty > 1 ? 's' : ''} × ${item.price.toLocaleString('en-EG')} EGP = ${(item.price * item.qty).toLocaleString('en-EG')} EGP`);
+    lines.push(`   Qty: ${item.qty} × ${item.price.toLocaleString('en-EG')} EGP = ${(item.price * item.qty).toLocaleString('en-EG')} EGP`);
   });
   lines.push('');
   lines.push(`*Total: ${getCartTotal().toLocaleString('en-EG')} EGP*`);
@@ -403,16 +467,12 @@ function buildWhatsAppMessage() {
 }
 
 function orderViaWhatsApp() {
-  if (cart.length === 0) {
-    showToast('Your cart is empty!', 'error');
-    return;
-  }
-  const phone   = '2001050965413';
-  const message = buildWhatsAppMessage();
-  window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+  if (cart.length === 0) { showToast('Your cart is empty!', 'error'); return; }
+  const phone = '2001050965413';
+  window.open(`https://wa.me/${phone}?text=${buildWhatsAppMessage()}`, '_blank');
 }
 
-// ─── Cart Sidebar Toggle ──────────────────────────────────────────────────────
+// ─── Cart Sidebar ─────────────────────────────────────────────────────────────
 function openCart() {
   cartSidebar.classList.add('open');
   cartOverlay.classList.add('visible');
@@ -425,27 +485,21 @@ function closeCart() {
   document.body.classList.remove('no-scroll');
 }
 
-// ─── Toast Notification ───────────────────────────────────────────────────────
+// ─── Toast ────────────────────────────────────────────────────────────────────
 function showToast(message, type = 'success') {
   const existing = document.querySelector('.toast');
   if (existing) existing.remove();
-
   const toast = document.createElement('div');
   toast.className = `toast toast--${type}`;
   toast.textContent = message;
   document.body.appendChild(toast);
-
-  requestAnimationFrame(() => {
-    toast.classList.add('toast--visible');
-  });
-
+  requestAnimationFrame(() => toast.classList.add('toast--visible'));
   setTimeout(() => {
     toast.classList.remove('toast--visible');
     setTimeout(() => toast.remove(), 300);
   }, 2500);
 }
 
-// ─── Cart Badge Animation ─────────────────────────────────────────────────────
 function animateCartBadge() {
   cartBadge.classList.remove('bounce');
   void cartBadge.offsetWidth;
@@ -455,34 +509,21 @@ function animateCartBadge() {
 // ─── Event Delegation ─────────────────────────────────────────────────────────
 productGrid.addEventListener('click', e => {
   const btnAdd = e.target.closest('.btn-add');
-  const btnDec = e.target.closest('.qty-dec');
-  const btnInc = e.target.closest('.qty-inc');
-
-  if (btnAdd) {
-    const id = parseInt(btnAdd.dataset.id, 10);
-    addToCart(id);
-    showToast('Added to cart');
-  } else if (btnDec) {
-    const id = parseInt(btnDec.dataset.id, 10);
-    decrementCart(id);
-  } else if (btnInc) {
-    const id = parseInt(btnInc.dataset.id, 10);
-    incrementCart(id);
-  }
+  if (!btnAdd) return;
+  const gidx    = parseInt(btnAdd.dataset.gidx, 10);
+  const varIdx  = selectedVariantIdx[gidx] || 0;
+  const variant = groupedProducts[gidx].variants[varIdx];
+  addToCart(variant.id);
+  showToast(`${groupedProducts[gidx].name} ${variant.spec} added to cart`);
 });
 
 cartItemsList.addEventListener('click', e => {
   const btnDec    = e.target.closest('.qty-dec');
   const btnInc    = e.target.closest('.qty-inc');
   const btnRemove = e.target.closest('[data-remove]');
-
-  if (btnDec) {
-    decrementCart(parseInt(btnDec.dataset.id, 10));
-  } else if (btnInc) {
-    incrementCart(parseInt(btnInc.dataset.id, 10));
-  } else if (btnRemove) {
-    removeFromCart(parseInt(btnRemove.dataset.remove, 10));
-  }
+  if (btnDec)    decrementCart(parseInt(btnDec.dataset.id, 10));
+  else if (btnInc)    incrementCart(parseInt(btnInc.dataset.id, 10));
+  else if (btnRemove) removeFromCart(parseInt(btnRemove.dataset.remove, 10));
 });
 
 categoryTabsEl.addEventListener('click', e => {
@@ -507,36 +548,27 @@ document.getElementById('hero-cta').addEventListener('click', () => {
   document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
 });
 
-// Mobile menu
 document.getElementById('menu-toggle').addEventListener('click', () => {
   document.getElementById('nav-links').classList.toggle('open');
 });
 
-// Close mobile menu on nav link click
 document.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', () => {
     document.getElementById('nav-links').classList.remove('open');
   });
 });
 
-// Smooth scroll nav links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
 });
 
-// ─── Sticky Header Shadow ─────────────────────────────────────────────────────
 window.addEventListener('scroll', () => {
-  const header = document.getElementById('site-header');
-  header.classList.toggle('scrolled', window.scrollY > 10);
+  document.getElementById('site-header').classList.toggle('scrolled', window.scrollY > 10);
 });
 
-// ─── Dismiss disclaimer banner ────────────────────────────────────────────────
 document.getElementById('dismiss-banner').addEventListener('click', () => {
   document.getElementById('disclaimer-banner').style.display = 'none';
 });
