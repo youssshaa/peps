@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TubeCheck Pro – Metal Tube Defect Analyzer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tube-checker-styles.css" />
+</head>
+<body>
+
+  <header class="tc-header">
+    <div class="tc-container">
+      <div class="tc-header__inner">
+        <div class="tc-logo">
+          <div class="tc-logo__icon">
+            <svg viewBox="0 0 40 40" fill="none">
+              <circle cx="20" cy="20" r="17" stroke="#3b82f6" stroke-width="2.5"/>
+              <circle cx="20" cy="20" r="10" stroke="#3b82f6" stroke-width="2" stroke-dasharray="3 2"/>
+              <circle cx="20" cy="5" r="3.5" fill="#ef4444"/>
+              <line x1="20" y1="8" x2="20" y2="11" stroke="#ef4444" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div>
+            <div class="tc-logo__name">TubeCheck <span class="tc-logo__pro">Pro</span></div>
+            <div class="tc-logo__sub">Metal Tube Inspection System</div>
+          </div>
+        </div>
+        <div class="tc-header__badges">
+          <span class="tc-hbadge">ASTM A53</span>
+          <span class="tc-hbadge">ASTM A106</span>
+          <span class="tc-hbadge">ISO 1127</span>
+          <span class="tc-hbadge">EN 10210</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="tc-main">
+    <div class="tc-container">
+
+      <div class="tc-statusbar">
+        <div class="tc-statusbar__item">
+          <span class="tc-statusbar__label">Session ID</span>
+          <span class="tc-statusbar__value mono" id="session-id">—</span>
+        </div>
+        <div class="tc-statusbar__item">
+          <span class="tc-statusbar__label">Date &amp; Time</span>
+          <span class="tc-statusbar__value mono" id="current-time">—</span>
+        </div>
+        <div class="tc-statusbar__item">
+          <span class="tc-statusbar__label">Overall Status</span>
+          <span class="tc-statusbar__value" id="overall-status"><span class="tc-chip tc-chip--neutral">Not Analyzed</span></span>
+        </div>
+        <div class="tc-statusbar__item">
+          <span class="tc-statusbar__label">Quality Score</span>
+          <span class="tc-statusbar__value mono" id="quality-score">—/100</span>
+        </div>
+      </div>
+
+      <div class="tc-tabs" role="tablist">
+        <button class="tc-tab active" data-tab="image" role="tab">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="16" height="14" rx="2"/><circle cx="7" cy="8" r="2"/><path d="m13 13-3-3-4 4"/></svg>
+          Image Analysis
+        </button>
+        <button class="tc-tab" data-tab="dimensions" role="tab">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="10" x2="17" y2="10"/><line x1="10" y1="3" x2="10" y2="17"/><line x1="5" y1="5" x2="15" y2="15"/></svg>
+          Dimension Check
+        </button>
+        <button class="tc-tab" data-tab="report" role="tab">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="2" width="12" height="16" rx="1.5"/><line x1="7" y1="7" x2="13" y2="7"/><line x1="7" y1="10" x2="13" y2="10"/><line x1="7" y1="13" x2="10" y2="13"/></svg>
+          Inspection Report
+        </button>
+      </div>
+
+      <!-- ── IMAGE ANALYSIS TAB ── -->
+      <section id="tab-image" class="tc-tab-content active">
+        <div class="tc-grid-2">
+
+          <div class="tc-card">
+            <div class="tc-card__hd">
+              <h2 class="tc-card__title">Upload Tube Image</h2>
+              <p class="tc-card__sub">Drop a photo of the tube for pixel-level defect analysis</p>
+            </div>
+            <div class="tc-card__bd">
+
+              <div class="tc-dropzone" id="dropzone">
+                <input type="file" id="file-input" accept="image/*" style="display:none" />
+                <div class="tc-dropzone__art">
+                  <svg viewBox="0 0 64 64" fill="none">
+                    <ellipse cx="32" cy="16" rx="22" ry="8" stroke="#3b82f6" stroke-width="2.5"/>
+                    <ellipse cx="32" cy="48" rx="22" ry="8" stroke="#3b82f6" stroke-width="2.5"/>
+                    <line x1="10" y1="16" x2="10" y2="48" stroke="#3b82f6" stroke-width="2.5"/>
+                    <line x1="54" y1="16" x2="54" y2="48" stroke="#3b82f6" stroke-width="2.5"/>
+                    <circle cx="46" cy="40" r="9" stroke="#f59e0b" stroke-width="2"/>
+                    <line x1="52" y1="46" x2="58" y2="52" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="43" y1="40" x2="49" y2="40" stroke="#f59e0b" stroke-width="1.5"/>
+                    <line x1="46" y1="37" x2="46" y2="43" stroke="#f59e0b" stroke-width="1.5"/>
+                  </svg>
+                </div>
+                <p class="tc-dropzone__title">Drop tube image here</p>
+                <p class="tc-dropzone__sub">JPG, PNG, WebP — click or drag &amp; drop</p>
+                <button class="tc-btn tc-btn--outline" id="browse-btn" type="button">Browse File</button>
+              </div>
+
+              <div class="tc-controls" id="analysis-controls" style="display:none">
+                <div class="tc-form-row">
+                  <label class="tc-label">Analysis Sensitivity</label>
+                  <div class="tc-slider-row">
+                    <span class="tc-slider-lbl">Low</span>
+                    <input type="range" id="sensitivity" class="tc-slider" min="1" max="10" value="5" />
+                    <span class="tc-slider-lbl">High</span>
+                    <span class="tc-slider-val" id="sensitivity-val">5</span>
+                  </div>
+                </div>
+                <div class="tc-form-row">
+                  <label class="tc-label">Defect Filters</label>
+                  <div class="tc-checks">
+                    <label class="tc-check"><input type="checkbox" id="d-cracks" checked /><span class="tc-check__box"></span>Cracks &amp; Fractures</label>
+                    <label class="tc-check"><input type="checkbox" id="d-corrosion" checked /><span class="tc-check__box"></span>Corrosion &amp; Rust</label>
+                    <label class="tc-check"><input type="checkbox" id="d-pitting" checked /><span class="tc-check__box"></span>Pitting &amp; Cavities</label>
+                    <label class="tc-check"><input type="checkbox" id="d-deform" checked /><span class="tc-check__box"></span>Surface Deformation</label>
+                  </div>
+                </div>
+                <div class="tc-btn-row">
+                  <button class="tc-btn tc-btn--primary" id="analyze-btn" type="button">
+                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="6"/><path d="m15 15 3 3"/></svg>
+                    Analyze Defects
+                  </button>
+                  <button class="tc-btn tc-btn--ghost" id="clear-img-btn" type="button">Clear</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="tc-card" id="results-card">
+            <div class="tc-card__hd">
+              <h2 class="tc-card__title">Analysis Results</h2>
+              <p class="tc-card__sub" id="results-sub">Upload and analyze an image to see results</p>
+            </div>
+            <div class="tc-card__bd">
+              <div class="tc-placeholder" id="results-placeholder">
+                <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="28" stroke="#1e3a5f" stroke-width="2.5"/><line x1="20" y1="32" x2="44" y2="32" stroke="#1e3a5f" stroke-width="2.5"/><line x1="32" y1="20" x2="32" y2="44" stroke="#1e3a5f" stroke-width="2.5"/></svg>
+                <p>No analysis yet</p>
+              </div>
+              <div id="analysis-results" style="display:none">
+                <div class="tc-score-display">
+                  <div class="tc-score-circle">
+                    <svg viewBox="0 0 120 120">
+                      <circle cx="60" cy="60" r="50" fill="none" stroke="#1e293b" stroke-width="12"/>
+                      <circle cx="60" cy="60" r="50" fill="none" stroke="#3b82f6" stroke-width="12"
+                        stroke-dasharray="314" stroke-dashoffset="314"
+                        stroke-linecap="round" id="score-arc" transform="rotate(-90 60 60)"/>
+                    </svg>
+                    <div class="tc-score-circle__val">
+                      <span id="score-num">0</span>
+                      <span class="tc-score-circle__of">/100</span>
+                    </div>
+                  </div>
+                  <div class="tc-score-info">
+                    <div class="tc-verdict" id="verdict-badge">—</div>
+                    <p class="tc-verdict-desc" id="verdict-desc"></p>
+                  </div>
+                </div>
+                <div class="tc-defect-list" id="defect-list"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="tc-card tc-imgout" id="image-display" style="display:none">
+          <div class="tc-card__hd">
+            <h2 class="tc-card__title">Annotated Image</h2>
+            <div class="tc-legend">
+              <span class="tc-legend-item" style="--c:#ff2222">Cracks</span>
+              <span class="tc-legend-item" style="--c:#ff8200">Corrosion</span>
+              <span class="tc-legend-item" style="--c:#ffd700">Pitting</span>
+            </div>
+          </div>
+          <div class="tc-card__bd">
+            <div class="tc-canvas-wrap">
+              <canvas id="result-canvas" class="tc-result-canvas"></canvas>
+              <div class="tc-loading" id="canvas-loading">
+                <div class="tc-spinner"></div>
+                <span>Analyzing image…</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── DIMENSION CHECK TAB ── -->
+      <section id="tab-dimensions" class="tc-tab-content">
+        <div class="tc-grid-2">
+
+          <div class="tc-card">
+            <div class="tc-card__hd">
+              <h2 class="tc-card__title">Tube Measurements</h2>
+              <p class="tc-card__sub">Enter measured dimensions to check against standard tolerances</p>
+            </div>
+            <div class="tc-card__bd">
+
+              <div class="tc-form-row">
+                <label class="tc-label">Industry Standard</label>
+                <select id="standard-select" class="tc-select">
+                  <option value="astm-a53">ASTM A53 – Welded &amp; Seamless Steel Pipe</option>
+                  <option value="astm-a106">ASTM A106 – Seamless Carbon Steel Pipe</option>
+                  <option value="astm-a312">ASTM A312 – Austenitic Stainless Steel Pipe</option>
+                  <option value="iso-1127">ISO 1127 – Stainless Steel Tubes</option>
+                  <option value="en-10210">EN 10210 – Structural Steel Hollow Sections</option>
+                  <option value="custom">Custom Tolerances</option>
+                </select>
+              </div>
+
+              <div class="tc-divider"></div>
+
+              <div class="tc-measure-grid">
+
+                <div class="tc-mfield">
+                  <label class="tc-label">Outer Diameter (OD)</label>
+                  <div class="tc-iunit"><input type="number" id="m-od" class="tc-input" placeholder="0.000" step="0.001" min="0" /><span class="tc-unit">mm</span></div>
+                  <span class="tc-nominal">Nominal: <input type="number" id="n-od" class="tc-input-sm" placeholder="—" /></span>
+                </div>
+
+                <div class="tc-mfield">
+                  <label class="tc-label">Wall Thickness (WT)</label>
+                  <div class="tc-iunit"><input type="number" id="m-wt" class="tc-input" placeholder="0.000" step="0.001" min="0" /><span class="tc-unit">mm</span></div>
+                  <span class="tc-nominal">Nominal: <input type="number" id="n-wt" class="tc-input-sm" placeholder="—" /></span>
+                </div>
+
+                <div class="tc-mfield">
+                  <label class="tc-label">Inner Diameter (ID)</label>
+                  <div class="tc-iunit"><input type="number" id="m-id" class="tc-input" placeholder="0.000" step="0.001" min="0" /><span class="tc-unit">mm</span></div>
+                  <span class="tc-nominal">Calc: <span id="calc-id">—</span></span>
+                </div>
+
+                <div class="tc-mfield">
+                  <label class="tc-label">Length</label>
+                  <div class="tc-iunit"><input type="number" id="m-length" class="tc-input" placeholder="0.0" step="0.1" min="0" /><span class="tc-unit">mm</span></div>
+                  <span class="tc-nominal">Nominal: <input type="number" id="n-length" class="tc-input-sm" placeholder="—" /></span>
+                </div>
+
+                <div class="tc-mfield">
+                  <label class="tc-label">Ovality (OD<sub>max</sub> − OD<sub>min</sub>)</label>
+                  <div class="tc-iunit"><input type="number" id="m-ovality" class="tc-input" placeholder="0.000" step="0.001" min="0" /><span class="tc-unit">mm</span></div>
+                </div>
+
+                <div class="tc-mfield">
+                  <label class="tc-label">Straightness Deviation</label>
+                  <div class="tc-iunit"><input type="number" id="m-straight" class="tc-input" placeholder="0.000" step="0.001" min="0" /><span class="tc-unit">mm</span></div>
+                </div>
+
+                <div class="tc-mfield">
+                  <label class="tc-label">Weight / Meter</label>
+                  <div class="tc-iunit"><input type="number" id="m-weight" class="tc-input" placeholder="0.00" step="0.01" min="0" /><span class="tc-unit">kg/m</span></div>
+                  <span class="tc-nominal">Nominal: <input type="number" id="n-weight" class="tc-input-sm" placeholder="—" /></span>
+                </div>
+
+                <div class="tc-mfield">
+                  <label class="tc-label">End Squareness</label>
+                  <div class="tc-iunit"><input type="number" id="m-square" class="tc-input" placeholder="0.000" step="0.001" min="0" /><span class="tc-unit">mm</span></div>
+                </div>
+
+              </div>
+
+              <div class="tc-custom-tol" id="custom-tol" style="display:none">
+                <h3 class="tc-custom-tol__title">Custom Tolerances</h3>
+                <div class="tc-custom-tol__grid">
+                  <div><label class="tc-label">OD ± (%)</label><input type="number" id="tol-od" class="tc-input" value="1.0" step="0.1" /></div>
+                  <div><label class="tc-label">WT min (−%)</label><input type="number" id="tol-wt" class="tc-input" value="12.5" step="0.5" /></div>
+                  <div><label class="tc-label">Straightness (%L)</label><input type="number" id="tol-str" class="tc-input" value="0.20" step="0.01" /></div>
+                </div>
+              </div>
+
+              <div class="tc-btn-row">
+                <button class="tc-btn tc-btn--primary" id="check-dims-btn" type="button">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><rect x="3" y="3" width="14" height="14" rx="2"/></svg>
+                  Check Compliance
+                </button>
+                <button class="tc-btn tc-btn--ghost" id="clear-dims-btn" type="button">Clear All</button>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="tc-card">
+            <div class="tc-card__hd">
+              <h2 class="tc-card__title">Compliance Results</h2>
+              <div id="dim-overall-badge"></div>
+            </div>
+            <div class="tc-card__bd">
+              <div class="tc-placeholder" id="dim-placeholder">
+                <svg viewBox="0 0 64 64" fill="none"><rect x="8" y="8" width="48" height="48" rx="4" stroke="#1e3a5f" stroke-width="2"/><line x1="16" y1="24" x2="48" y2="24" stroke="#1e3a5f" stroke-width="2"/><line x1="16" y1="32" x2="48" y2="32" stroke="#1e3a5f" stroke-width="2"/><line x1="16" y1="40" x2="32" y2="40" stroke="#1e3a5f" stroke-width="2"/></svg>
+                <p>Enter measurements and check compliance</p>
+              </div>
+              <div id="dim-results" style="display:none">
+                <div id="compliance-table"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── REPORT TAB ── -->
+      <section id="tab-report" class="tc-tab-content">
+        <div class="tc-card">
+          <div class="tc-card__hd">
+            <h2 class="tc-card__title">Inspection Report</h2>
+            <div class="tc-btn-row">
+              <button class="tc-btn tc-btn--outline" id="print-btn" type="button">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7V3h10v4"/><rect x="3" y="7" width="14" height="9" rx="1"/><path d="M7 13h6M7 16h4"/></svg>
+                Print / Export PDF
+              </button>
+            </div>
+          </div>
+          <div class="tc-card__bd">
+            <div id="report-content"></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Hidden canvas for pixel analysis -->
+  <canvas id="source-canvas" style="display:none"></canvas>
+
+  <script src="tube-checker-app.js"></script>
+</body>
+</html>
