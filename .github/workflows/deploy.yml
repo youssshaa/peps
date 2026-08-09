@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [claude/peptide-reseller-website-jB9mD]
+    branches: [claude/french-math-study-site-ypgrt0]
   workflow_dispatch:
 
 permissions:
